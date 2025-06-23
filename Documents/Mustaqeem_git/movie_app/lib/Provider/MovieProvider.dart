@@ -10,7 +10,7 @@ List<Movie> get movieList => _moviesList;
 Future<void> loadMovies(BuildContext context) async {
   try {
     final jsonString = await DefaultAssetBundle.of(context) 
-      .loadString('assets/data/films.json');
+      .loadString('assets/data/film.json');
 
       final movies = MovieParser.parse(jsonString);
 

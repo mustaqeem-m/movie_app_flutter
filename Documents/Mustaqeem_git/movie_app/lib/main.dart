@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),   
       ),
       home: const Home(),
     );
@@ -52,23 +52,54 @@ class _HomeState extends State<Home> {
           itemCount: movieData.movieList.length,
           itemBuilder: (context, index) {
             final movie = movieData.movieList[index];
-            return ListTile(
-              title: Text(movieData.movieList[index].title),
-              subtitle: Text("Enjoy the show!"),
-              leading: CircleAvatar(
-                child: Text(movie.title[0]),
-            )
-            );
-            // return Card(
-            //   child: Center(
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(18.0),
-            //       child: Text(
-            //         movies[index],
-            //         style: TextStyle(fontSize: 16),
-            //       ),
-            //     ),
-            //   ),
+            return Card(
+              child: ExpansionTile(
+                title: Text(movie.title),
+                subtitle: Text(movie.genre),
+                leading: CircleAvatar(
+                  child: Text(movie.title[0]),
+                ),
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 75),
+                    child: Column(
+                      children: [
+                        RichText(text: TextSpan(
+                          style: DefaultTextStyle.of(context).style,
+                            children: [
+                              TextSpan(
+                                text: "Released: ",
+                                style: Theme.of(context).textTheme.labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold)
+                              ),
+                              TextSpan(
+                                text: '${movie.released} \n',
+                              ),TextSpan(
+                                text: 'Plot: ',
+                                style: Theme.of(context).textTheme.labelLarge
+                                ?.copyWith(fontWeight: FontWeight.bold)
+                              ),
+                              TextSpan(
+                                text: '${movie.plot} ',
+                              ),
+                            ]
+                        )
+                        ),
+                        TextButton(onPressed: null, child: Text("Read More"))
+                      ],
+                    ), 
+                  )
+                ],
+                )
+            ); 
+
+            // return ListTile(
+            //   title: Text(movieData.movieList[index].title),
+            //   subtitle: Text("Enjoy the show!"),
+            //   leading: CircleAvatar(
+            //     child: Text(movie.title[0]),
+            // ),
             // );
           },
         ),
