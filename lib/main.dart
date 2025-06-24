@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
           itemCount: movieData.movieList.length,
           itemBuilder: (context, index) {
             final movie = movieData.movieList[index];
-            return MovieCard(movie: movie); 
+            return MovieCard(movie: movie, isDetails: true,); 
 
             // return ListTile(
             //   title: Text(movieData.movieList[index].title),

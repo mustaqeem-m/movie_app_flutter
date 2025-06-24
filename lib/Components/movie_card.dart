@@ -6,16 +6,18 @@ class MovieCard extends StatelessWidget {
   const MovieCard({
     super.key,
     required this.movie,
+    this.isDetails = false,
   });
 
   final Movie movie;
+  final bool isDetails;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ExpansionTile(
         title: Text(movie.title),
-        subtitle: Text(movie.genre),
+        subtitle: Text(movie.genre), 
         leading: CircleAvatar(
           backgroundImage: NetworkImage(movie.images.isNotEmpty && movie.images[0].isNotEmpty ? movie.images[0] :  "https://via.placeholder.com/150" ),
         ),
@@ -46,9 +48,9 @@ class MovieCard extends StatelessWidget {
                     ]
                 )
                 ),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(movie:  movie)));
-                }, child: Text("Read More"))
+                isDetails ?  TextButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(movie:  movie,)));
+                }, child: Text("Read More")) : const Text("") ,
               ],
             ), 
           )

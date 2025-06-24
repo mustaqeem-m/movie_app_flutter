@@ -3,8 +3,9 @@ import 'package:movie_app/Components/movie_card.dart';
 import 'package:movie_app/models/movie.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key, required this.movie});
+  const MovieDetails({super.key, required this.movie,});
   final Movie movie;
+  
 
   @override 
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MovieDetails extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            MovieCard(movie: movie),
+            MovieCard(movie: movie,isDetails: false),
             SizedBox(height: 30,),
             Text("Movie Poster",
             style: Theme.of(context).textTheme.displaySmall
