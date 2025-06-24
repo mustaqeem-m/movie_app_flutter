@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/Components/movie_card.dart';
 import 'package:movie_app/Provider/movieProvider.dart';
 import "package:provider/provider.dart";
 
@@ -45,54 +46,14 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movies"),
+        title: const Text("Movies"),
       ),
       body: Center(
         child: ListView.builder(
           itemCount: movieData.movieList.length,
           itemBuilder: (context, index) {
             final movie = movieData.movieList[index];
-            return Card(
-              child: ExpansionTile(
-                title: Text(movie.title),
-                subtitle: Text(movie.genre),
-                leading: CircleAvatar(
-                  child: Text(movie.title[0]),
-                ),
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(left: 75),
-                    child: Column(
-                      children: [
-                        RichText(text: TextSpan(
-                          style: DefaultTextStyle.of(context).style,
-                            children: [
-                              TextSpan(
-                                text: "Released: ",
-                                style: Theme.of(context).textTheme.labelLarge
-                                ?.copyWith(fontWeight: FontWeight.bold)
-                              ),
-                              TextSpan(
-                                text: '${movie.released} \n',
-                              ),TextSpan(
-                                text: 'Plot: ',
-                                style: Theme.of(context).textTheme.labelLarge
-                                ?.copyWith(fontWeight: FontWeight.bold)
-                              ),
-                              TextSpan(
-                                text: '${movie.plot} ',
-                              ),
-                            ]
-                        )
-                        ),
-                        TextButton(onPressed: null, child: Text("Read More"))
-                      ],
-                    ), 
-                  )
-                ],
-                )
-            ); 
+            return MovieCard(movie: movie); 
 
             // return ListTile(
             //   title: Text(movieData.movieList[index].title),
@@ -107,3 +68,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+

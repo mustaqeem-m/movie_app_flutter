@@ -56,3 +56,21 @@ simple words => for calling these type of method we dont need to create a object
   this make sure provider inside initstate called every time before every build , remember its inside the build.
   
 
+# Navigation 
+
+ <TextButton(onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails()));
+                        }, child: Text("Read More"))
+
+ -> The Navigator:
+- Think of Navigator as a stack manager for screens (called “routes” in Flutter).
+
+- Push = Go forward (like opening a new page)
+
+- Pop = Go backward (like pressing Android back button)
+
+- This is a Flutter class that wraps the next screen with material design transition animations.
+
+- It takes a builder:
+
+- Hey Flutter, when pushing, build a new screen using this widget (MovieDetails)”
